@@ -9,8 +9,9 @@ module Selenium
                    when :firefox, :ff
                      Firefox::Bridge.new(opts)
                    when :firefox_tddium
-                     opts[:port] = port
-                     ::NoLockFirefox::NoLockFirefoxBridge::Bridge.new(opts)
+                     pool = ::NoLockFirefox::PortPool.new
+                     opts[:port] = pool.find_free_port
+                     ::NoLockFirefox::NoLockFirefoxBridge.new(opts)
                    when :remote
                      Remote::Bridge.new(opts)
                    when :ie, :internet_explorer
