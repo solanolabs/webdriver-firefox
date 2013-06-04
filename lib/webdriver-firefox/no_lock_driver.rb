@@ -1,3 +1,5 @@
+# This file subject to Apache License 2.0; see LICENSE.txt
+
 module Selenium
   module WebDriver
     class Driver

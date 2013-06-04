@@ -1,3 +1,5 @@
+# Copyright (c) 2013 Solano Labs All Rights Reserved
+
 require 'selenium/webdriver'
 
 require 'webdriver-firefox/port_pool'

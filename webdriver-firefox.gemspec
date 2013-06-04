@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.version     = WebdriverFirefox::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Solano Labs"]
-  s.email       = ["info@tddium.com"]
+  s.email       = ["info@solanolabs.com"]
   s.homepage    = "http://www.solanolabs.com/"
   s.summary     = %q{WebdriverFirefox}
   s.description = %q{Lockless Support for Webdriver and Firefox}

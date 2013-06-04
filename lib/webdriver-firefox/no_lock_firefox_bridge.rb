@@ -1,3 +1,5 @@
+# This file subject to Apache License 2.0; see LICENSE.txt
+
 module NoLockFirefox
   class NoLockFirefoxBridge < Selenium::WebDriver::Firefox::Bridge
     class FakeLock

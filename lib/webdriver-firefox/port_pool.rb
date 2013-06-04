@@ -1,3 +1,5 @@
+# Copyright (c) 2013 Solano Labs All Rights Reserved
+
 require 'socket'
 
 module NoLockFirefox
@@ -47,40 +49,6 @@ module NoLockFirefox
       rescue SocketError, Errno::EADDRINUSE => e
         return nil
       end
-    end
-
-    def locked_add(port)
-      ok = false
-      File.open(@path_ports, File::RDWR|File::CREAT, 0644) {|f|
-        f.flock(File::LOCK_EX)
-        port_set = f.read
-        if port_set.empty? then
-          port_set = []
-        else
-          port_set = JSON.load()
-        end
-        if port_set.include?(port) then
-          ok = false
-        else
-          port_set.push(port)
-          f.rewind
-          f.write(port_set.to_json)
-          f.flush
-          f.truncate(f.pos)
-          ok = true
-        end
-      }
-
-      return ok
-    end
-
-    def locked_read
-      val = nil
-      File.open(@path_ports, "r") {|f|
-        f.flock(File::LOCK_SH)
-        val = f.read
-      }
-      return JSON.load(val)
     end
   end
 end
