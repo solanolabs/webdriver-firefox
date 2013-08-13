@@ -2,7 +2,7 @@
 $:.push File.expand_path("../lib", __FILE__)
 require 'webdriver-firefox/version'
 
-class Config
+class RbConfig
   class << self
     def files
       fnames = `git ls-files -- bin/* lib/*`.split("\n")
@@ -29,10 +29,10 @@ Gem::Specification.new do |s|
   
   s.rubyforge_project = "tddium"
 
-  s.files         = Config.files
+  s.files         = RbConfig.files
   s.extensions    = []
   s.test_files    = []
-  s.executables   = Config.executables
+  s.executables   = RbConfig.executables
   s.require_paths = ["lib"]
 
   s.add_dependency("selenium-webdriver")
