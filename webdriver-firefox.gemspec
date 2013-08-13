@@ -2,7 +2,7 @@
 $:.push File.expand_path("../lib", __FILE__)
 require 'webdriver-firefox/version'
 
-class RbConfig
+module RbConfig
   class << self
     def files
       fnames = `git ls-files -- bin/* lib/*`.split("\n")
