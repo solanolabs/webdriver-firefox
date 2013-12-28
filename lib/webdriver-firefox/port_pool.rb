@@ -7,9 +7,7 @@ module NoLockFirefox
     HOST            = "127.0.0.1"
     START_PORT      = 24576
 
-    def initialize(path=nil)
-      @path_ports = path
-      @path_ports ||= "/tmp/webdriver-firefox.ports.json"
+    def initialize
       @random = Random.new
     end
 
