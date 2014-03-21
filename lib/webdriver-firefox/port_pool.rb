@@ -8,7 +8,11 @@ module NoLockFirefox
     START_PORT      = 24576
 
     def initialize
-      @random = Random.new
+      begin
+        @random = ::Random.new
+      rescue
+        @random = nil
+      end
     end
 
     def find_free_port
@@ -17,7 +21,11 @@ module NoLockFirefox
       tid = ENV.fetch('TDDIUM_TID', 0).to_i
 
       range = 256*tid
-      index = @random.rand(256)
+      if @random then
+        index = @random.rand(256)
+      else
+        index = rand(256)
+      end
       limit = START_PORT+256*(tid+1)
 
       timeout = Time.now+90
@@ -41,7 +49,9 @@ module NoLockFirefox
     def probe_port(port)
       begin
         s = TCPServer.new(HOST, port)
-        s.close_on_exec = true
+        if s.respond_to?(:close_on_exec=) then
+          s.close_on_exec = true
+        end
 #        ChildProcess.close_on_exec s
         return s
       rescue SocketError, Errno::EADDRINUSE => e
